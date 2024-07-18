@@ -3,6 +3,7 @@ package employees;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +24,8 @@ public class EmployeesController {
         log.debug("Principal: {}", principal);
         Map<String, Object> model = new HashMap<>();
         model.put("employees", employeesClient.listEmployees());
+
+        // SecurityContextHolder.getContext().getAuthentication().getPrincipal()
 
         return new ModelAndView("index", model);
     }

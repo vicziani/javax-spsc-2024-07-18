@@ -4,6 +4,18 @@ server:
 spring:
   application:
     name: employees-frontend
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: employees-frontend
+            authorization-grant-type: authorization_code
+            scope: openid,email,profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/employees
+            user-name-attribute: preferred_username
 
 management:
   endpoints:
